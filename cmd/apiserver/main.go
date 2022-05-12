@@ -2,7 +2,7 @@ package main
 
 import (
 	"log"
-	"github.com\ALPetrov\my-rest-api\internal\app\apiserver"
+	"github.com/ALPetrov/my-rest-api/internal/app/apiserver"
 
 )
 func main() {

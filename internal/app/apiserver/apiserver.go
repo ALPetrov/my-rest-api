@@ -21,9 +21,9 @@ func New (config *Config) *APIServer {
 		logger: logrus.New(),
 	}
 }
-//3-Запускает HTTP server, подключается к БД и т.д.
+//3-Запускаем HTTP server, подключаемся к БД и т.д.
 func (s *APIServer) Start() error {
-	if err := s.configureLogger(); err != nil {    // Запускаем функцию, если ошибка выводим error
+	if err := s.configureLogger(); err != nil {    // Запускает функцию, если ошибка выводит error
 		return err
 	}
 	s.logger.Info("Сервер запущен")
