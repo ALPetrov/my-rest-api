@@ -8,9 +8,9 @@ import (
 func main() {
 	config := apiserver.NewConfig() //инициализируем NewConfig с параметрами по умолчанию 
 	
-	s := apiserver.New(config)   //передаем config в качестве аргумента, вызываем функц Старт и запускает его 	записываем АпиСервер и функц Старт запускает его 
-	if err := s.Start(); err != nil {
-		log.Fatal(err)
+	s := apiserver.New(config)   //передаем config в качестве аргумента
+	if err := s.Start(); err != nil {  //вызываем функц Старт и запускаем его
+		log.Fatal(err)                // если что- то не так, выводит ошибку  
 	}
 
 
