@@ -5,7 +5,5 @@ type Config struct {
 }
 
 func NewConfig() *Config {
-	return &Config{
-	DatabaseURL: "root:mysql57@/mydb",
-	}
+	return &Config{}
 }
