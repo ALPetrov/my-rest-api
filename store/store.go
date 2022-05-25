@@ -19,7 +19,7 @@ func New(config *Config) *Store {
 
 //5-Создаем метод для инициализации БД, подключения к БД и отлавливания ошибок
 func (s *Store) Open() error {
-	db, err := sql.Open("mysql", s.config.DatabaseURL)
+	db, err := sql.Open("mysql", s.config.Store.DatabaseURL)
 	if err != nil {
 		return err
 	}

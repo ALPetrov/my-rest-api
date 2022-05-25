@@ -1,7 +1,9 @@
 package store
 
 type Config struct {
-	DatabaseURL string `json:"database_url"`
+	Store struct {
+        DatabaseURL  string `json:"database_url"`
+        } `json:"store"`
 }
 
 func NewConfig() *Config {
