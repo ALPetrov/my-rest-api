@@ -5,7 +5,7 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/ALPetrov/my-rest-api/store"
+	"github.com/ALPetrov/my-rest-api/internal/app/store"
 	"github.com/gorilla/mux"
 	"github.com/sirupsen/logrus"
 )

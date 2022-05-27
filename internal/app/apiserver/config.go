@@ -1,6 +1,6 @@
 package apiserver
 
-import "github.com/ALPetrov/my-rest-api/store"
+import "github.com/ALPetrov/my-rest-api/internal/app/store"
 
 // 1.1 Структура с полем IP адреса сервера и полем уровня состояния ошибки
 type Config struct {

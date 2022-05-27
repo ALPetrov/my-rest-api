@@ -7,8 +7,9 @@ import (
 )
 //4-Создаем структуру Базы данных, инициализируем поля
 type Store struct {
-	config *Config
-	db     *sql.DB
+	config 			*Config
+	db    			*sql.DB
+	userRepository  *UserRepository
 }
 
 func New(config *Config) *Store {
@@ -35,4 +36,14 @@ func (s *Store) Open() error {
 func (s *Store) Close() {
 	s.db.Close()
 
+}
+// Метод через который пользователь взаимодействует с БД
+func (s *Store) User() *UserRepository {
+	if s.userRepository != nil {
+		return s.userRepository    //Проверяем на ошибки и возвращаем данные
+	}
+	s.userRepository = &UserRepository{     //Если не создан, инициализируем и возвражаем данные
+		store: s,
+	}
+	return s.userRepository
 }
