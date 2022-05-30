@@ -2,10 +2,19 @@ module github.com/ALPetrov/my-rest-api
 
 go 1.18
 
-require github.com/sirupsen/logrus v1.8.1
+require (
+	github.com/sirupsen/logrus v1.8.1
+	github.com/stretchr/testify v1.2.2
+)
+
+require (
+	github.com/davecgh/go-spew v1.1.1 // indirect
+	github.com/pmezard/go-difflib v1.0.0 // indirect
+)
 
 require (
 	github.com/go-sql-driver/mysql v1.6.0
 	github.com/gorilla/mux v1.8.0
-	golang.org/x/sys v0.0.0-20191026070338-33540a1f6037 // indirect
+	golang.org/x/crypto v0.0.0-20220525230936-793ad666bf5e
+	golang.org/x/sys v0.0.0-20210615035016-665e8c7367d1 // indirect
 )

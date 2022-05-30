@@ -9,7 +9,7 @@ type UserRepository struct {
 
 func (r *UserRepository) Create(u *model.User) (*model.User, error) {
 	if err := r.store.db.QueryRow(
-		"INSERT INTO users(email, encrypted_password) VALUES (?, ?) SELECT LAST_INSERT_ID()",
+		"INSERT INTO users(email, encrypted_password) VALUES (?, ?)",
 		u.Email, 
 		u.EncryptedPassword,
 	).Scan(&u.ID); err != nil {   // Запрос должен возвращать ID нашего пользователя (уточнить синтаксис запроса у Дениса)
@@ -19,5 +19,17 @@ func (r *UserRepository) Create(u *model.User) (*model.User, error) {
 }	
 // используем при авторизации пользователя по email
 func (r *UserRepository) FindByEmail(email string) (*model.User, error) {
-	return nil, nil
+	u := &model.User{}
+	if err := r.store.db.QueryRow(
+		"SELECT id, email, encrypted_password FROM users WHERE email = ?",
+		email,
+	).Scan(
+		&u.ID,
+		&u.Email,
+		&u.EncryptedPassword,
+	); err != nil {
+		return nil, err
+	}
+
+	return u, nil
 }
