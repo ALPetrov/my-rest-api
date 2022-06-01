@@ -1,8 +1,11 @@
 package apiserver
 
 import (
+	"encoding/json"
+//	"fmt"
 	"io"
 	"net/http"
+	"os"
 
 	"github.com/ALPetrov/my-rest-api/store"
 	"github.com/gorilla/mux"
@@ -61,6 +64,11 @@ func (s *APIServer) handleHello() http.HandlerFunc {  // запускает http
 } 
 //Конфигурируем и открываем хранилище
 func (s *APIServer) configureStore() error {
+	//parcon, err := ParseBaseConfig("C:/Users/Admin/go/src/github.com/ALPetrov/my-rest-api/configs/apiserver.json")
+	// if err != nil {
+	// 	return  err
+	// }
+		
 	st := store.New(s.config.Store)
 	if err := st.Open(); err != nil {
 		return err
@@ -69,4 +77,20 @@ func (s *APIServer) configureStore() error {
 	s.store = st  // Если всё удачно, записываем переменную в s.store
 
 	return nil
+}
+//Функция, которая парсит конфигураию из json файла
+func ParseBaseConfig(filename string) (*Config, error) {
+	var config *Config
+
+	configFile, err := os.Open(filename)
+
+	if err != nil {
+		return config, err
+	}
+	defer configFile.Close()
+
+	jsonParser := json.NewDecoder(configFile)
+	jsonParser.Decode(&config)
+
+	return config, err
 }
