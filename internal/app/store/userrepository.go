@@ -1,8 +1,9 @@
 package store
 
-import "github.com/ALPetrov/my-rest-api/internal/app/model"
-
-
+import (
+	
+	"github.com/ALPetrov/my-rest-api/internal/app/model"
+)
 type UserRepository struct {
 	store *Store
 }
@@ -21,6 +22,7 @@ func (r *UserRepository) Create(u *model.User) (*model.User, error) {
 	return nil, err
 }
 	return u, nil
+	
 }	
 // используем при авторизации пользователя по email
 func (r *UserRepository) FindByEmail(email string) (*model.User, error) {
