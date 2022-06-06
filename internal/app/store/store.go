@@ -2,7 +2,7 @@ package store
 
 import (
 	"database/sql"
-	_ "github.com/go-sql-driver/mysql"
+	_ "github.com/lib/pq"
 
 )
 //4-Создаем структуру Базы данных, инициализируем поля
@@ -20,7 +20,7 @@ func New(config *Config) *Store {
 
 //5-Создаем метод для инициализации БД, подключения к БД и отлавливания ошибок
 func (s *Store) Open() error {
-	db, err := sql.Open("mysql", s.config.DatabaseURL)
+	db, err := sql.Open("postgres", s.config.DatabaseURL)
 	if err != nil {
 		return err
 	}

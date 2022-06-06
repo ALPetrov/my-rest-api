@@ -1,10 +1,10 @@
 package apiserver
 
 import (
-	//"io"
 	"io"
+	"os"
 	"net/http"
-
+	"encoding/json"
 	"github.com/ALPetrov/my-rest-api/internal/app/store"
 	"github.com/gorilla/mux"
 	"github.com/sirupsen/logrus"
@@ -70,4 +70,16 @@ func (s *APIServer) configureStore() error {
 	s.store = st  // Если всё удачно, записываем переменную в s.store
 
 	return nil
+}
+func ParseBaseConfig(filename string) (*Config, error) {
+	var config *Config
+	configFile, err := os.Open(filename)
+
+	if err != nil {
+		return config, err
+	}
+	defer configFile.Close()
+	jsonParser := json.NewDecoder(configFile)
+	jsonParser.Decode(&config)
+	return config, err
 }

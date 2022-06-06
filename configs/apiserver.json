@@ -2,6 +2,6 @@
     "bind_addr": ":8080",
     "log_level": "debug",
     "Store": {
-            "database_url": "root:mysql57@/mydb"
+            "database_url": "host=localhost dbname=mydb sslmode=disable user=postgres password=pass"
     }
 }
