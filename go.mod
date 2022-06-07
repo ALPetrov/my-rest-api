@@ -7,6 +7,8 @@ require (
 	github.com/stretchr/testify v1.2.2
 )
 
+require github.com/asaskevich/govalidator v0.0.0-20210307081110-f21760c49a8d // indirect
+
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/lib/pq v1.10.6
@@ -14,6 +16,7 @@ require (
 )
 
 require (
+	github.com/go-ozzo/ozzo-validation v3.6.0+incompatible
 	github.com/gorilla/mux v1.8.0
 	golang.org/x/crypto v0.0.0-20220525230936-793ad666bf5e
 	golang.org/x/sys v0.0.0-20210615035016-665e8c7367d1 // indirect

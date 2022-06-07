@@ -1,6 +1,10 @@
 package model
 
-import "golang.org/x/crypto/bcrypt"
+import (
+				"golang.org/x/crypto/bcrypt"
+				"github.com/go-ozzo/ozzo-validation/is"
+	validation "github.com/go-ozzo/ozzo-validation"
+)
 
 type User struct {
 	ID                int
@@ -8,19 +12,28 @@ type User struct {
 	Password          string
 	EncryptedPassword string
 }
+func (u *User) Validate() error {
+	return validation.ValidateStruct(
+		u,
+		validation.Field(&u.Email, validation.Required, is.Email),
+		validation.Field(&u.Password, validation.By(RequiredIf(u.EncryptedPassword == "")), validation.Length(6, 100)),
+	)
+}
 
+// Метод вызывается каждый раз перед добавлением пользователя в базу
 func (u *User) BeforeCreate() error {
 	if len(u.Password) > 0 {
-		enc, err := encryptString(u.Password)
+		enc, err := encryptString(u.Password) //Зашифровывает пароль
 		if err != nil {
 			return err
 		}
 
-		u.EncryptedPassword = enc
+		u.EncryptedPassword = enc 
 	}
 
 	return nil
 }
+// Функция шифрования
 func encryptString(s string) (string, error) {
 	b, err := bcrypt.GenerateFromPassword([]byte(s), bcrypt.MinCost)
 	if err != nil {
